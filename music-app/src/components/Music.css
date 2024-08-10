@@ -1,0 +1,22 @@
+.current-music-container {
+  margin: auto;
+  width: 90%;
+  height: 350px;
+  background-color: hsl(0, 2%, 67%);
+  border-radius: 20px;
+}
+
+.current-music-detail{
+    width:100%;
+    height:100%;
+}
+.current-music-image{
+    width:50%;
+    height:80%;
+    object-fit:center;
+    object-position:center;
+}
+.current-music-image img{
+    width:100%;
+    height:100%;
+}

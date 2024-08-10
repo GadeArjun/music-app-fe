@@ -1,7 +1,14 @@
 import "./MusicSlider.css";
 import trendingSongs from "../data";
+// import { useNavigate } from "react-router-dom";
 
-function MusicSlider({ title, category, imageUrl }) {
+function MusicSlider({ category }) {
+  // const navigate = useNavigate();
+  function handleClickToPlayMusic(id) {
+    // navigate("/music");
+    console.log(id);
+  }
+
   return (
     <>
       <div className="container">
@@ -11,16 +18,12 @@ function MusicSlider({ title, category, imageUrl }) {
         <div className="all-musics">
           {trendingSongs.map((ele) => {
             return (
-              <div className="music">
+              <div className="music" onClick={()=>handleClickToPlayMusic(ele.id)}>
                 <div className="music-image">
-                  <img src={ele.imageUrl} alt="music-image" />
+                  <img src={ele.thumbnail} alt="music-image" />
                 </div>
                 <div className="music-title">
-                  <p>
-                    {(ele.title + " - " + ele.artist).length <= 30
-                      ? ele.title + " - " + ele.artist
-                      : ele.title + " - " + ele.artist.split(" ")[0] + " ..."}
-                  </p>
+                  <p>{ele.title}</p>
                 </div>
               </div>
             );
