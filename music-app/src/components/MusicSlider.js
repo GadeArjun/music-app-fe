@@ -1,13 +1,21 @@
 import "./MusicSlider.css";
-import trendingSongs from "../data";
-// import { useNavigate } from "react-router-dom";
+import allSongs from "../data";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function MusicSlider({ category }) {
-  // const navigate = useNavigate();
+  useEffect(() => {
+    // Reset scroll position when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+  const navigate = useNavigate();
+
   function handleClickToPlayMusic(id) {
-    // navigate("/music");
-    console.log(id);
+    navigate(`/music?id=${id}&category=${category}`);
   }
+
+  const newCategory = category.replace(" ", "");
+  const currentCategory = allSongs[newCategory];
 
   return (
     <>
@@ -16,9 +24,12 @@ function MusicSlider({ category }) {
           <h2>{category}</h2>
         </div>
         <div className="all-musics">
-          {trendingSongs.map((ele) => {
+          {currentCategory.map((ele) => {
             return (
-              <div className="music" onClick={()=>handleClickToPlayMusic(ele.id)}>
+              <div
+                className="music"
+                onClick={() => handleClickToPlayMusic(ele.id)}
+              >
                 <div className="music-image">
                   <img src={ele.thumbnail} alt="music-image" />
                 </div>

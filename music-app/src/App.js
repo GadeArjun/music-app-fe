@@ -23,7 +23,11 @@ function App() {
               <br />
               <MusicSlider category="English Songs" />
               <br />
-              <MusicSlider category="90s Songs" />
+              <MusicSlider category="_90s Songs" />
+              <br />
+              <br />
+              <br />
+              <hr/>
             </>
           }
         />
@@ -33,6 +37,13 @@ function App() {
             <>
               <NavigationBar />
               <Music />
+              <br />
+              <br />
+              <MusicSlider category="Trending Songs" />
+              <br />
+              <br />
+              <br />
+              <hr/>
             </>
           }
         />

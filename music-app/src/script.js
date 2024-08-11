@@ -1,6 +1,6 @@
-import puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
 
- async function searchYouTube(searchQuery) {
+async function searchYouTube(searchQuery) {
   // Launch the browser
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -35,15 +35,20 @@ import puppeteer from "puppeteer";
       videos.push({ title, url, thumbnail, duration });
     });
 
-    return videos.slice(0, 5); // Return the top 5 results
+    return videos.slice(0, 3); // Return the top 5 results
   });
 
   // Print the top 5 videos
-  await browser.close();
+  results.forEach((ele) => {
+    console.log("title : ", ele.title);
+    console.log("thumbnail : ", ele.thumbnail);
+    console.log("url : ", ele.url);
+    console.log("duration : ", ele.duration);
+    console.log("\n");
+  });
 
-  return results;
+  await browser.close();
 }
 
 // Example usage:
-searchYouTube("Trending Songs")
-
+searchYouTube("90s songs");
