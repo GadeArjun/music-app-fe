@@ -57,17 +57,21 @@
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+  color: hsl(0, 4%, 84%);
 }
 .music:hover {
   box-shadow: 7px 5px 10px hsla(0, 0%, 0%, 0.8);
+  color: #a7a5a5;
 }
+
+
 
 .music-image {
   object-fit: contain;
   object-position: center;
   border-radius: 5px;
   min-width: 97%;
-  min-height: 50%;
+  min-height: 49%;
   /* border: 1px solid black; */
 }
 .music-image img {
@@ -77,7 +81,7 @@
   height: 100%;
 }
 .music-title {
-  height: 50%;
+  /* height: 51.3%; */
   width: 97%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,6 +90,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 3px;
-  color: hsl(0, 4%, 84%);
   font-weight: bold;
 }

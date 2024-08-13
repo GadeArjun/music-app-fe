@@ -3,8 +3,16 @@ import Music from "./components/Music";
 import MusicSlider from "./components/MusicSlider";
 import NavigationBar from "./components/NavigationBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MusicController from "./components/MusicController";
+import { useState } from "react";
 
 function App() {
+  const [playing, setPlaying] = useState({
+    play: false,
+    id: 1,
+    category: "Trending Songs",
+  });
+
   return (
     <Router>
       <Routes>
@@ -13,21 +21,22 @@ function App() {
           element={
             <>
               <NavigationBar />
-              <MusicSlider category="Trending Songs" />
+              <MusicSlider category="Trending Songs" setPlaying={setPlaying} />
               <br />
-              <MusicSlider category="New Songs" />
+              <MusicSlider category="New Songs" setPlaying={setPlaying} />
               <br />
-              <MusicSlider category="Hindi Songs" />
+              <MusicSlider category="Hindi Songs" setPlaying={setPlaying} />
               <br />
-              <MusicSlider category="Marathi Songs" />
+              <MusicSlider category="Marathi Songs" setPlaying={setPlaying} />
               <br />
-              <MusicSlider category="English Songs" />
+              <MusicSlider category="English Songs" setPlaying={setPlaying} />
               <br />
-              <MusicSlider category="_90s Songs" />
+              <MusicSlider category="_90s Songs" setPlaying={setPlaying} />
+              <MusicController setPlaying={setPlaying} playing={playing} />
               <br />
               <br />
               <br />
-              <hr/>
+              <hr />
             </>
           }
         />
@@ -36,17 +45,18 @@ function App() {
           element={
             <>
               <NavigationBar />
-              <Music />
-              <br />
-              <br />
-              <MusicSlider category="Trending Songs" />
-              <br />
-              <br />
-              <br />
-              <hr/>
+              <Music setPlaying={setPlaying} playing={playing} />
             </>
           }
         />
+        <Route
+          path="/search"
+          element={
+            <>
+              <NavigationBar />
+            </>
+          }
+        ></Route>
       </Routes>
     </Router>
   );

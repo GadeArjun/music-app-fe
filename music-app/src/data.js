@@ -140,7 +140,7 @@ const allSongs = {
       title:
         "Old Vs New Bollywood Mashup 2023 | Superhits Romantic Hindi Songs Mashup Live - DJ MaShUP 2024",
       url: "https://www.youtube.com/watch?v=eOsG5qSakro&pp=ygULSGluZGkgc29uZ3M%3D",
-      thumbnail: "https://i.ytimg.com/vi/eOsG5qSakro/hq720.jpg",
+      thumbnail: "https://img.youtube.com/vi/eOsG5qSakro/hqdefault.jpg",
       duration: "No duration",
       artist: "DJ MaShUP",
       year: "2024",
