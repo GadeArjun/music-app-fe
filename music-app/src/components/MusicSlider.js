@@ -1,9 +1,10 @@
 import "./MusicSlider.css";
-import allSongs from "../data";
+// import allSongs from "../data";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-function MusicSlider({ category, setPlaying }) {
+function MusicSlider({ category, setPlaying, playing, currentCategory }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,7 +13,23 @@ function MusicSlider({ category, setPlaying }) {
   }, []);
 
   const newCategory = category.replace(" ", "");
-  const currentCategory = allSongs[newCategory];
+  const [currentData, setCurrentData] = useState([]);
+
+  useEffect(() => {
+    async function fetchMusicData() {
+      try {
+        const res = await axios.get(
+          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${newCategory.toLowerCase()}/`
+        );
+        console.log(res.data);
+        setCurrentData(res.data);
+      } catch (err) {
+        console.log({ err });
+      }
+    }
+    fetchMusicData();
+  }, [newCategory]);
+
   function handleClickToPlayMusic(id) {
     navigate(`/music?id=${id}&category=${category}`);
     setPlaying({ play: true, id: id, category: category });
@@ -25,17 +42,18 @@ function MusicSlider({ category, setPlaying }) {
           <h2>{category}</h2>
         </div>
         <div className="all-musics">
-          {currentCategory.map((ele) => {
+          {currentData.map((ele) => {
             return (
               <div
+                key={ele.id}
                 className="music"
                 onClick={() => handleClickToPlayMusic(ele.id)}
               >
                 <div className="music-image">
-                  <img src={ele.thumbnail} alt="music-image" />
+                  <img src={ele.thumbnailUrl} alt="music-image" />
                 </div>
                 <div className="music-title">
-                  <p >{ele.title}</p>
+                  <p>{ele.title}</p>
                 </div>
               </div>
             );

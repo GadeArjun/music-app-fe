@@ -13,6 +13,8 @@ function MusicController({ playing, setPlaying }) {
   const id = playing.id;
   const currentCategoryLength = currentCategory.length;
   const currentMusic = currentCategory[id - 1];
+  // console.log(currentMusic);
+
   const location = useLocation();
   const param = queryString.parse(location.search);
   function handlePlayPauseClick() {
@@ -20,11 +22,29 @@ function MusicController({ playing, setPlaying }) {
       if (currentMusic.title && playing.play === true) {
         setPlaying({ play: false, id: id, category: category });
       } else {
-        setPlaying({
-          play: true,
-          id: param.id,
-          category: param.category.replace(" ", ""),
-        });
+        // if (playing.id === 1 && playing.category === "Trending Songs") {
+        //   navigate(`/music?id=1&category=TrendingSongs`);
+        //   setPlaying({
+        //     play: true,
+        //     id: 1,
+        //     category: "Trending Songs",
+        //   });
+        // } else {
+        if (param) {
+          setPlaying({
+            play: true,
+            id: param.id,
+            category: param.category.replace(" ", ""),
+          });
+        } else {
+          setPlaying({
+            play: true,
+            id: 1,
+            category: "TrendigSongs",
+          });
+        }
+
+        // }
       }
     } catch (err) {
       setPlaying({
@@ -113,9 +133,25 @@ function MusicController({ playing, setPlaying }) {
       }
     }
   }
+  if (playing.play) {
+    var autoplay = 1;
+  } else {
+    autoplay = 0;
+  }
+  const urlObj = new URL(currentMusic.url);
+  const params = new URLSearchParams(urlObj.search);
+  const musicId = params.get("v");
 
   return (
     <>
+      <iframe
+        width="0px"
+        height="0px"
+        src={`https://www.youtube.com/embed/${musicId}?autoplay=${autoplay}&vq=large&controls=1&mute=0`}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
       <div className="current-music-controller">
         <div className="current-music-seek">
           <span>00:00</span> <input type="range" min={0} max={100}></input>
