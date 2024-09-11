@@ -22,7 +22,7 @@ function Music({ setPlaying, playing }) {
     async function getData(category, id) {
       try {
         const res = await axios.get(
-          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${category}/${id}/`
+          `/${category}/${id}/`
         );
         setCurrentMusic(res.data[0]);
       } catch (err) {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 
-function MusicSlider({ category, setPlaying, playing, currentCategory }) {
+function MusicSlider({ category, setPlaying }) {
   const navigate = useNavigate();
   const newCategory = category.replace(" ", "") || "";
 
@@ -23,7 +23,7 @@ function MusicSlider({ category, setPlaying, playing, currentCategory }) {
       setLoading(true);
       try {
         const res = await axios.get(
-          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${newCategory}/`
+          `/${newCategory}/`
         );
         setVideoData(res.data);
         setLoading(false);
