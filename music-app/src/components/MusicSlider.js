@@ -1,38 +1,47 @@
 import "./MusicSlider.css";
-// import allSongs from "../data";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 function MusicSlider({ category, setPlaying, playing, currentCategory }) {
   const navigate = useNavigate();
+  const newCategory = category.replace(" ", "") || "";
+
+  function handleClickToPlayMusic(ele) {
+    navigate(`/music?category=${ele.category}&id=${ele.id}`);
+    setPlaying({
+      play: true,
+    });
+  }
+
+  const [videoData, setVideoData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Reset scroll position when the component mounts
-    window.scrollTo(0, 0);
-  }, []);
-
-  const newCategory = category.replace(" ", "");
-  const [currentData, setCurrentData] = useState([]);
-
-  useEffect(() => {
-    async function fetchMusicData() {
+    const getData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(
-          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${newCategory.toLowerCase()}/`
+          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${newCategory}/`
         );
-        console.log(res.data);
-        setCurrentData(res.data);
+        setVideoData(res.data);
+        setLoading(false);
       } catch (err) {
         console.log({ err });
       }
-    }
-    fetchMusicData();
+    };
+    getData();
   }, [newCategory]);
 
-  function handleClickToPlayMusic(id) {
-    navigate(`/music?id=${id}&category=${category}`);
-    setPlaying({ play: true, id: id, category: category });
+  console.log(videoData);
+
+  if (loading || videoData.length === 0) {
+    return (
+      <>
+        <Loading category={category}></Loading>
+      </>
+    );
   }
 
   return (
@@ -42,22 +51,24 @@ function MusicSlider({ category, setPlaying, playing, currentCategory }) {
           <h2>{category}</h2>
         </div>
         <div className="all-musics">
-          {currentData.map((ele) => {
-            return (
-              <div
-                key={ele.id}
-                className="music"
-                onClick={() => handleClickToPlayMusic(ele.id)}
-              >
-                <div className="music-image">
-                  <img src={ele.thumbnailUrl} alt="music-image" />
-                </div>
-                <div className="music-title">
-                  <p>{ele.title}</p>
-                </div>
-              </div>
-            );
-          })}
+          {videoData.length > 0
+            ? videoData.map((ele) => {
+                return (
+                  <div
+                    key={ele.id}
+                    className="music"
+                    onClick={() => handleClickToPlayMusic(ele, videoData)}
+                  >
+                    <div className="music-image">
+                      <img src={ele.thumbnailUrl} alt="music-image" />
+                    </div>
+                    <div className="music-title">
+                      <p>{ele.title}</p>
+                    </div>
+                  </div>
+                );
+              })
+            : ""}
         </div>
       </div>
     </>

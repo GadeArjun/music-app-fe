@@ -3,17 +3,15 @@ import Music from "./components/Music";
 import MusicSlider from "./components/MusicSlider";
 import NavigationBar from "./components/NavigationBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MusicController from "./components/MusicController";
+// import MusicController from "./components/MusicController";
+// import { createContext, useEffect, useState } from "react";
 import { useState } from "react";
 // import axios from "axios";
 
 function App() {
   const [playing, setPlaying] = useState({
     play: false,
-    id: 1,
-    category: "Trending Songs",
   });
-  // const [musicData, setMusicData] = useState([]);
 
   return (
     <Router>
@@ -27,28 +25,24 @@ function App() {
                 category="Trending Songs"
                 setPlaying={setPlaying}
                 playing={playing}
-                // musicData={musicData}
               />
               <br />
               <MusicSlider
                 category="New Songs"
                 setPlaying={setPlaying}
                 playing={playing}
-                // musicData={musicData}
               />
               <br />
               <MusicSlider
                 category="Hindi Songs"
                 setPlaying={setPlaying}
                 playing={playing}
-                // musicData={musicData}
               />
               <br />
               <MusicSlider
                 category="Marathi Songs"
                 setPlaying={setPlaying}
                 playing={playing}
-                // musicData={musicData}
               />
               <br />
               {/* <MusicSlider
@@ -61,13 +55,8 @@ function App() {
                 category="_90s Songs"
                 setPlaying={setPlaying}
                 playing={playing}
-                // musicData={musicData}
               />
-              <MusicController
-                setPlaying={setPlaying}
-                playing={playing}
-                // // musicData={musicData}
-              />
+              {/* <MusicController setPlaying={setPlaying} playing={playing} /> */}
               <br />
               <br />
               <br />
@@ -76,20 +65,16 @@ function App() {
           }
         />
         <Route
-          path="/music"
+          path="/music/"
           element={
             <>
               <NavigationBar />
-              <Music
-                setPlaying={setPlaying}
-                playing={playing}
-                // // musicData={musicData}
-              />
+              <Music setPlaying={setPlaying} playing={playing} />
             </>
           }
         />
         <Route
-          path="/search"
+          path="/search/:musicName"
           element={
             <>
               <NavigationBar />
