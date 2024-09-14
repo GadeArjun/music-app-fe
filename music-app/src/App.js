@@ -42,10 +42,10 @@ function App() {
                 playing={playing}
               />
               <br />
-              
+
               <br />
               <MusicSlider
-                category="_90s Songs"
+                category="_90's Songs"
                 setPlaying={setPlaying}
                 playing={playing}
               />
