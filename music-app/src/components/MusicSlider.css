@@ -81,7 +81,7 @@
   height: 100%;
 }
 .music-title {
-  /* height: 51.3%; */
+  height: 51%;
   width: 97%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -89,6 +89,6 @@
 .music-title p {
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 3px;
+  margin: 2px;
   font-weight: bold;
 }
