@@ -7,14 +7,15 @@
   align-items: center;
 }
 .navigation {
-  width: 90%;
+  width: 100%;
   height: 40%;
-  /* background-color: #3fd322; */
   font-size: 20px;
   color: white;
 }
 
 .navigation ul {
+  overflow: auto;
+  padding: 2px;
   margin: 0px;
   margin-top: 5px;
   display: flex;
@@ -35,6 +36,23 @@
 
 .heart {
   color: red;
+}
+
+.title-music {
+  color: #00ff00;
+}
+
+.title-app {
+  color: #00b7ff;
+}
+.app-name a {
+  text-decoration: none;
+}
+.app-name:hover .title-app {
+  color: #00ff00;
+}
+.app-name:hover .title-music {
+  color: #00b7ff;
 }
 
 .search-bar {

@@ -21,9 +21,7 @@ function Music({ setPlaying, playing }) {
   useEffect(() => {
     async function getData(category, id) {
       try {
-        const res = await axios.get(
-          `/${category}/${id}/`
-        );
+        const res = await axios.get(`/${category}/${id}/`);
         setCurrentMusic(res.data[0]);
       } catch (err) {
         console.log({ err });

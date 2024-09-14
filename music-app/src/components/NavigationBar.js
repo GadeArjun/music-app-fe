@@ -13,9 +13,18 @@ function NavigationBar() {
       <div className="navbar">
         <div className="navigation">
           <ul>
-            <span className="home">&#127968;</span>{" "}
+            <li>
+              <span className="app-name">
+                <a href="https://musicapp-brown.vercel.app">
+                  <span className="title-music">Music</span>
+                  <span className="title-app">App</span>
+                </a>
+              </span>
+            </li>
+            <span className="home">&#127968;</span>
             <li onClick={handleOnClickHome}>Home</li>
-            <span className="heart">&#10084;</span> <li>Favorite</li>
+            <span className="heart">&#10084;</span>
+            <li>Favorite</li>
           </ul>
         </div>
         <div className="search-bar">
