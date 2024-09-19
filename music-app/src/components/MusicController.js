@@ -20,30 +20,46 @@ function MusicController({ playing, setPlaying }) {
   const [currentMusic, setCurrentMusic] = useState({
     title: "Music Title loading....",
     musicId: "",
-    durration: "00:00",
+    musicYouTubeId: "",
   });
+  const [currentCategoryMusic, setCurrentCategoryMusic] = useState();
 
   useEffect(() => {
-    async function getData(category, id) {
+    async function getData(category) {
       try {
         setAutoplay(true);
+
         const res = await axios.get(
-          `/${category}/${id}/`
+          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${category}`
         );
-        if (res.data[0]) {
-          setCurrentMusic(res.data[0]);
-        } else {
-          id = 1;
-          navigate(`/music?category=${category}&id=${id}`);
+        if (res.data) {
+          setCurrentCategoryMusic(res.data);
         }
       } catch (err) {
         console.log({ err });
       }
     }
-    getData(category, id);
-  }, [category, id, navigate]);
+    getData(category);
+  }, [category, navigate]);
 
-  // console.log("music = ", currentMusic.musicYouTubeId , autoplay);
+  useEffect(() => {
+    if (currentCategoryMusic) {
+      console.log("data2= ", currentCategoryMusic);
+      const currentMusicData = currentCategoryMusic.filter((ele, index) => {
+        if (index + 1 === id) {
+          console.log(index + 1 === id);
+          console.log(index + 1, "     id", id);
+          return ele;
+        } else {
+          return null;
+        }
+      });
+      console.log({ currentMusicData });
+      // console.log({ currentMusic });
+
+      setCurrentMusic(currentMusicData[0]);
+    }
+  }, [currentCategoryMusic, id]);
 
   // function for play pause music
   function handlePlayPauseClick() {
@@ -58,8 +74,15 @@ function MusicController({ playing, setPlaying }) {
   function handleNextButtonClick(id) {
     try {
       setAutoplay(true);
-      id += 1;
-      navigate(`/music?category=${category}&id=${id}`);
+      // console.log(currentCategoryMusic.length);
+
+      if (currentCategoryMusic.length > id) {
+        id += 1;
+        navigate(`/music?category=${category}&id=${id}`);
+      } else {
+        id = 1;
+        navigate(`/music?category=${category}&id=${id}`);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -73,7 +96,7 @@ function MusicController({ playing, setPlaying }) {
         id -= 1;
         navigate(`/music?category=${category}&id=${id}`);
       } else {
-        id = 1;
+        id = currentCategoryMusic.length;
         navigate(`/music?category=${category}&id=${id}`);
       }
     } catch (err) {
@@ -83,6 +106,8 @@ function MusicController({ playing, setPlaying }) {
 
   return (
     <>
+      {/* {console.log("rednder music controller")} */}
+      {console.log(currentMusic.musicYouTubeId, currentMusic.title)}
       <iframe
         width="0px"
         height="0px"
@@ -92,18 +117,6 @@ function MusicController({ playing, setPlaying }) {
         referrerpolicy="strict-origin-when-cross-origin"
       ></iframe>
       <div className="current-music-controller">
-        {/* <div className="current-music-seek">
-          <span>{seekPossition}</span>{" "}
-          <input
-            value={seekValue}
-            type="range"
-            min={0}
-            onChange={""}
-            max={100}
-          ></input>
-          <span>{currentMusic.durration}</span>
-        </div> */}
-
         <div className="current-music-play">
           <div className="current-music-controls">
             <div className="controls">

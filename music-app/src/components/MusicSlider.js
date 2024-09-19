@@ -8,8 +8,8 @@ function MusicSlider({ category, setPlaying }) {
   const navigate = useNavigate();
   const newCategory = category.replace(" ", "") || "";
 
-  function handleClickToPlayMusic(ele) {
-    navigate(`/music?category=${ele.category}&id=${ele.id}`);
+  function handleClickToPlayMusic(ele, id) {
+    navigate(`/music?category=${ele.category}&id=${id}`);
     setPlaying({
       play: true,
     });
@@ -23,9 +23,11 @@ function MusicSlider({ category, setPlaying }) {
       setLoading(true);
       try {
         const res = await axios.get(
-          `/${newCategory}/`
+          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${newCategory}`
         );
         setVideoData(res.data);
+        console.log(res.data);
+
         setLoading(false);
       } catch (err) {
         console.log({ err });
@@ -52,12 +54,12 @@ function MusicSlider({ category, setPlaying }) {
         </div>
         <div className="all-musics">
           {videoData.length > 0
-            ? videoData.map((ele) => {
+            ? videoData.map((ele, index) => {
                 return (
                   <div
-                    key={ele.id}
+                    key={index + 1}
                     className="music"
-                    onClick={() => handleClickToPlayMusic(ele, videoData)}
+                    onClick={() => handleClickToPlayMusic(ele, index + 1)}
                   >
                     <div className="music-image">
                       <img src={ele.thumbnailUrl} alt="music-image" />

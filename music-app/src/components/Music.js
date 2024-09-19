@@ -21,7 +21,9 @@ function Music({ setPlaying, playing }) {
   useEffect(() => {
     async function getData(category, id) {
       try {
-        const res = await axios.get(`/${category}/${id}/`);
+        const res = await axios.get(
+          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${category}/${id}/`
+        );
         setCurrentMusic(res.data[0]);
       } catch (err) {
         console.log({ err });
@@ -59,10 +61,6 @@ function Music({ setPlaying, playing }) {
       <br />
       <MusicSlider category={category} setPlaying={setPlaying} />
       <MusicController playing={playing} setPlaying={setPlaying} />
-      <br />
-      <br />
-      <br />
-      <hr />
     </>
   );
 }

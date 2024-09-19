@@ -32,25 +32,19 @@
 }
 
 .all-musics::-webkit-scrollbar {
-  height: 10px;
+  height: 0px;
 }
 
 .all-musics::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 29%);
   width: 100px;
-  border-radius: 20px;
-}
-
-.all-musics::-webkit-scrollbar-track-piece {
-  background-color: #a7a5a5;
-  border-radius: 20px;
 }
 
 .music {
+  border: 2px solid white;
   flex-shrink: 0;
   border-radius: 7px;
   margin: 0px 5px;
-  height: 90%;
+  height: 93%;
   width: 130px;
   /* background-color: white; */
   display: flex;
@@ -60,11 +54,10 @@
   color: hsl(0, 4%, 84%);
 }
 .music:hover {
-  box-shadow: 7px 5px 10px hsla(0, 0%, 0%, 0.8);
+  /* box-shadow: 7px 5px 10px hsla(0, 0%, 0%, 0.8); */
   color: #a7a5a5;
+  border: 2px solid rgb(90, 90, 90);
 }
-
-
 
 .music-image {
   object-fit: contain;

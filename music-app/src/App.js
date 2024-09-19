@@ -4,6 +4,7 @@ import MusicSlider from "./components/MusicSlider";
 import NavigationBar from "./components/NavigationBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import Footer from "./components/Footer";
 
 function App() {
   const [playing, setPlaying] = useState({
@@ -42,17 +43,13 @@ function App() {
                 playing={playing}
               />
               <br />
-
               <br />
               <MusicSlider
                 category="_90's Songs"
                 setPlaying={setPlaying}
                 playing={playing}
               />
-              <br />
-              <br />
-              <br />
-              <hr />
+              <Footer />
             </>
           }
         />
@@ -62,6 +59,12 @@ function App() {
             <>
               <NavigationBar />
               <Music setPlaying={setPlaying} playing={playing} />
+              <Footer />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
             </>
           }
         />
