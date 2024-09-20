@@ -18,24 +18,25 @@ function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
       if(searchMusicName.length !== 0)
       {
         searchMusicData(searchMusicName);
+      navigate(`/search/`);
       }
       else
       {
-      searchMusicData("trending hindi")  
+        searchMusicData("trending hindi")  
+        navigate(`/search/`);
       }
-      navigate(`/search/`);
     }
   }
   function handleSearchClick() {
     console.log(searchMusicName);
     if (searchMusicName.length !== 0) {
       searchMusicData(searchMusicName);
+      navigate(`/search/`);
     }
     else{
       searchMusicData("Trending hindi");
-
-    }
     navigate(`/search/`);
+    }
   }
 
   function handleOnSearchChange(e) {
