@@ -1,11 +1,62 @@
 import { useNavigate } from "react-router-dom";
 import "./NavigationBar.css";
+import { useState } from "react";
+import axios from "axios";
 
-function NavigationBar() {
+function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
   const navigate = useNavigate();
+  const [searchMusicName, setSearchMusicName] = useState("");
+
   function handleOnClickHome() {
     navigate("/");
-    console.log("click");
+    // console.log("click");
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      // console.log(searchMusicName);
+      if(searchMusicName.length !== 0)
+      {
+        searchMusicData(searchMusicName);
+      }
+      else
+      {
+      searchMusicData("trending hindi")  
+      }
+      navigate(`/search/`);
+    }
+  }
+  function handleSearchClick() {
+    console.log(searchMusicName);
+    if (searchMusicName.length !== 0) {
+      searchMusicData(searchMusicName);
+    }
+    else{
+      searchMusicData("Trending hindi");
+
+    }
+    navigate(`/search/`);
+  }
+
+  function handleOnSearchChange(e) {
+    setSearchMusicName(e.target.value);
+  }
+  async function searchMusicData(searchQuery) {
+    try {
+      setLoading(true);
+      const res = await axios.post(
+        `/searchsongs/${searchQuery}`
+      );
+      console.log(res.data);
+      setSearchMusicData(res.data);
+      setLoading(false);
+      setRecent(false)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  function handleOnFocus() {
+    navigate("/search");
   }
 
   return (
@@ -28,8 +79,16 @@ function NavigationBar() {
           </ul>
         </div>
         <div className="search-bar">
-          <input placeholder="Search for Music ♫♫♫" />
-          <span className="search-icon">🔍</span>
+          <input
+            name="music-search"
+            placeholder="Search for Music ♫♫♫"
+            onChange={handleOnSearchChange}
+            onKeyDown={handleKeyDown}
+            onFocus={handleOnFocus}
+          />
+          <span className="search-icon" onClick={handleSearchClick}>
+            🔍
+          </span>
         </div>
       </div>
     </>

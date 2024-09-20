@@ -1,0 +1,63 @@
+.loading {
+  color: white;
+  padding: 0px;
+  margin: 0px;
+}
+
+.search-loading-container {
+  width: 100%;
+  min-height: 80vh;
+}
+.all-loading-music {
+  width: 90%;
+  height: 95%;
+  margin: auto;
+  padding: 15px 10px;
+}
+.loading-music {
+  height: 70px;
+  width: 98%;
+  background-color: #1c1c1c;
+  border: 2px solid gray;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.loading-music:hover {
+  border: 2px solid white;
+}
+
+.loading-music-image {
+  min-width: 100px;
+  max-width: 100px;
+  height: 95%;
+  margin-right: 10px;
+}
+.loading-music-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+.loading-music-title {
+  height: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #b5b5b5;
+  font-weight: bold;
+}
+.loading-music-title p {
+  height: 30px;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.loading-music-title p span {
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px #9000fd;
+}

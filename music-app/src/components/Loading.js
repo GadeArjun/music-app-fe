@@ -1,6 +1,7 @@
 import "./MusicSlider.css";
 
 function Loading({ category }) {
+  const array = [1, 2, 3, 4, 5, 6];
   return (
     <>
       <div className="container">
@@ -8,77 +9,25 @@ function Loading({ category }) {
           <h2>{category}</h2>
         </div>
         <div className="all-musics">
-          <div className="music">
-            <div className="music-image">
-              <img
-                src="https://t4.ftcdn.net/jpg/04/10/17/95/240_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA.jpg"
-                alt="music-image"
-              />
-            </div>
-            <div className="music-title">
-              <p>{category} Title Loading ...</p>
-            </div>
-          </div>
-          <div className="music">
-            <div className="music-image">
-              <img
-                src="https://t4.ftcdn.net/jpg/04/10/17/95/240_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA.jpg"
-                alt="music-image"
-              />
-            </div>
-            <div className="music-title">
-              <p>
-                <br />
-                <br />
-                {category} Song Title...
-              </p>
-            </div>
-          </div>{" "}
-          <div className="music">
-            <div className="music-image">
-              <img
-                src="https://t4.ftcdn.net/jpg/04/10/17/95/240_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA.jpg"
-                alt="music-image"
-              />
-            </div>
-            <div className="music-title">
-              <p>
-                <br />
-                <br />
-                {category} Song Title...
-              </p>
-            </div>
-          </div>{" "}
-          <div className="music">
-            <div className="music-image">
-              <img
-                src="https://t4.ftcdn.net/jpg/04/10/17/95/240_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA.jpg"
-                alt="music-image"
-              />
-            </div>
-            <div className="music-title">
-              <p>
-                <br />
-                <br />
-                {category} Song Title...
-              </p>
-            </div>
-          </div>{" "}
-          <div className="music">
-            <div className="music-image">
-              <img
-                src="https://t4.ftcdn.net/jpg/04/10/17/95/240_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA.jpg"
-                alt="music-image"
-              />
-            </div>
-            <div className="music-title">
-              <p>
-                <br />
-                <br />
-                {category} Song Title...
-              </p>
-            </div>
-          </div>
+          {array.map((ele) => {
+            return (
+              <>
+                <div className="music">
+                  <div className="music-image">
+                    <img
+                      src="https://t4.ftcdn.net/jpg/04/10/17/95/240_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA.jpg"
+                      alt={`music-image${ele}`}
+                    />
+                  </div>
+                  <div className="music-title">
+                    <p>
+                      {category} <br /> Title Loading...
+                    </p>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
       </div>
     </>

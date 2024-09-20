@@ -23,7 +23,7 @@ function MusicSlider({ category, setPlaying }) {
       setLoading(true);
       try {
         const res = await axios.get(
-          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${newCategory}`
+          `/${newCategory}`
         );
         setVideoData(res.data);
         console.log(res.data);

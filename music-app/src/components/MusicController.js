@@ -30,7 +30,7 @@ function MusicController({ playing, setPlaying }) {
         setAutoplay(true);
 
         const res = await axios.get(
-          `https://legendary-space-succotash-5gxg5574qx4cp6g7-8080.app.github.dev/${category}`
+          `/${category}`
         );
         if (res.data) {
           setCurrentCategoryMusic(res.data);

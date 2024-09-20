@@ -5,6 +5,7 @@ import NavigationBar from "./components/NavigationBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Footer from "./components/Footer";
+import Search from "./components/Search";
 
 function App() {
   const [playing, setPlaying] = useState({
@@ -69,10 +70,11 @@ function App() {
           }
         />
         <Route
-          path="/search/:musicName"
+          path="/search/"
           element={
             <>
-              <NavigationBar />
+              <Search />
+              <Footer />
             </>
           }
         ></Route>
