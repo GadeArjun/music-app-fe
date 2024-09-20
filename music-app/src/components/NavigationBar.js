@@ -18,12 +18,12 @@ function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
       if(searchMusicName.length !== 0)
       {
         searchMusicData(searchMusicName);
-      navigate(`/search/`);
+      navigate(`/search`);
       }
       else
       {
         searchMusicData("trending hindi")  
-        navigate(`/search/`);
+        navigate(`/search`);
       }
     }
   }
@@ -31,23 +31,22 @@ function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
     console.log(searchMusicName);
     if (searchMusicName.length !== 0) {
       searchMusicData(searchMusicName);
-      navigate(`/search/`);
+      navigate(`/search`);
     }
     else{
       searchMusicData("Trending hindi");
-    navigate(`/search/`);
+    navigate(`/search`);
     }
   }
 
   function handleOnSearchChange(e) {
     setSearchMusicName(e.target.value);
   }
+
   async function searchMusicData(searchQuery) {
     try {
       setLoading(true);
-      const res = await axios.post(
-        `/searchsongs/${searchQuery}`
-      );
+      const res = await axios.post(`/searchsongs/${searchQuery}`);
       console.log(res.data);
       setSearchMusicData(res.data);
       setLoading(false);

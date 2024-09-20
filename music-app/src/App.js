@@ -70,7 +70,7 @@ function App() {
           }
         />
         <Route
-          path="/search/"
+          path="/search"
           element={
             <>
               <Search />
