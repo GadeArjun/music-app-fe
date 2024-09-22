@@ -46,7 +46,7 @@ function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
   async function searchMusicData(searchQuery) {
     try {
       setLoading(true);
-      const res = await axios.post(`/searchsongs/${searchQuery}`);
+      const res = await axios.get(`https://music-app-be-2-production.railway.app/searchsongs/${searchQuery}`);
       console.log(res.data);
       setSearchMusicData(res.data);
       setLoading(false);
