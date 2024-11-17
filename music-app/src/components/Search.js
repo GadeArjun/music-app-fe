@@ -39,7 +39,7 @@ function Search() {
     async function fetchData() {
       try {
         setLoading(true);
-        const res = await axios.get("/searchsongs/");
+        const res = await axios.get("https://music-app-rz0u.onrender.com/searchsongs/");
         setSearchMusicData(res.data);
         setLoading(false);
         setRecent(true);

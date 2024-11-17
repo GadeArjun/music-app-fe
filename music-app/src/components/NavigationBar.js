@@ -3,6 +3,9 @@ import "./NavigationBar.css";
 import { useState } from "react";
 import axios from "axios";
 
+
+
+
 function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
   const navigate = useNavigate();
   const [searchMusicName, setSearchMusicName] = useState("");
@@ -46,7 +49,7 @@ function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
   async function searchMusicData(searchQuery) {
     try {
       setLoading(true);
-      const res = await axios.get(`https://music-app-be-2-production.up.railway.app/searchsongs/${searchQuery}`);
+      const res = await axios.get(`https://music-app-rz0u.onrender.com/searchsongs/${searchQuery}`);
       console.log(res.data);
       setSearchMusicData(res.data);
       setLoading(false);
@@ -74,8 +77,8 @@ function NavigationBar({ setSearchMusicData, setLoading , setRecent}) {
             </li>
             <span className="home">&#127968;</span>
             <li onClick={handleOnClickHome}>Home</li>
-            <span className="heart">&#10084;</span>
-            <li>Favorite</li>
+            {/* <span className="heart">&#10084;</span>
+            <li>Favorite</li> */}
           </ul>
         </div>
         <div className="search-bar">

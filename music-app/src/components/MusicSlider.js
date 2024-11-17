@@ -23,7 +23,7 @@ function MusicSlider({ category, setPlaying }) {
       setLoading(true);
       try {
         const res = await axios.get(
-          `/${newCategory}`
+          `https://music-app-rz0u.onrender.com/${newCategory}`
         );
         setVideoData(res.data);
         console.log(res.data);

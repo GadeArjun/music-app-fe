@@ -30,7 +30,7 @@ function MusicController({ playing, setPlaying }) {
         setAutoplay(true);
 
         const res = await axios.get(
-          `/${category}`
+          `https://music-app-rz0u.onrender.com/${category}`
         );
         if (res.data) {
           setCurrentCategoryMusic(res.data);

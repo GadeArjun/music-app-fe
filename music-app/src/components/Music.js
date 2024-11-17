@@ -21,7 +21,7 @@ function Music({ setPlaying, playing }) {
   useEffect(() => {
     async function getData(category, id) {
       try {
-        const res = await axios.get(`/${category}/`);
+        const res = await axios.get(`https://music-app-rz0u.onrender.com/${category}/`);
         console.log(res.data);
         const allData = res.data;
         setCurrentMusic(allData[id - 1]);
